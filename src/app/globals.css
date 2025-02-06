@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.wrapper {
+   @apply max-w-7xl mx-4 sm:mx-6 md:mx-8 lg:mx-auto
+}
+
+body {
+   @apply bg-black text-white; }
+
+
+
+
+.great-vibes-regular {
+   font-family: "Great Vibes", cursive;
+   font-weight: 400;
+   font-style: normal;
+ }
+ 
+
