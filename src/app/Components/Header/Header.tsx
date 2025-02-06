@@ -4,6 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 import { CiShoppingBasket } from 'react-icons/ci'
 import { FaAngleDown, FaAngleRight } from 'react-icons/fa'
+import { RiContactsLine } from "react-icons/ri";
 
 
 const Header = () => {
@@ -117,8 +118,14 @@ const Header = () => {
              </button>
              <CiShoppingBasket className='text-xl mt-9 hover:text-primaryColor'/>
              {/* <ShoppingCart className='hover:text-primaryColor' /> */}
-  
+
+             <Link href={'/Signup'}>           
+            
+              <RiContactsLine className='tex-xl mt-9 hover:text-primaryColor' />
+            
+            </Link>
             </div>
+
       </nav>
     </div>
       

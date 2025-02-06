@@ -50,7 +50,7 @@ export default function Navbar({ totalItems = 0 }: { totalItems?: number }) {
                             Search
                         </button>
                         <div className="mt-9 flex gap-3">
-                            <FaUser />
+                          <Link href={"/Signup"}>  <FaUser /> </Link>
                             <Link href="/shopping-cart" className="relative">
                                 <FaBagShopping className="text-2xl hover:text-primaryColor" />
                                 {totalItems > 0 && (

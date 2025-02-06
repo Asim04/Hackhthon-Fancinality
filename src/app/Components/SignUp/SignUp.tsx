@@ -90,6 +90,8 @@ const SignUpForm: React.FC = () => {
             <Image
               src="https://www.svgrepo.com/show/355037/google.svg"
               alt="Google"
+              width={100}
+              height={100}
               className="w-5 h-5 absolute left-4"
             />
             Sign up with Google
