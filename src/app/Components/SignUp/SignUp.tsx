@@ -48,7 +48,7 @@ const SignUpForm: React.FC = () => {
                 id={field.id}
                 type={field.type}
                 placeholder={field.placeholder}
-                className="w-full px-4 py-2 focus:ring-2 focus:ring-orange-400 focus:outline-none rounded-md"
+                className=" text-gray-800 w-full px-4 py-2 focus:ring-2 focus:ring-orange-400 focus:outline-none rounded-md"
                 value={formValues[field.id] || ''}
                 onChange={handleChange}
               />

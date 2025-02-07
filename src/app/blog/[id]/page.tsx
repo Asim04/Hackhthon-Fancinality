@@ -1,26 +1,33 @@
 import React from 'react'
-import { datablog } from '../../../Data/data'
+import {databloglistindivi} from "../../../../Data/data"
 import Image from 'next/image'
 import { IoIosStar } from "react-icons/io";
-import client from "../../../public/client.png"
+import client from "../../../../public/client.png"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
 import { PiUserBold } from "react-icons/pi";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { LuArrowUpFromLine } from "react-icons/lu";
 import { GoCommentDiscussion } from "react-icons/go";
 import { PiUserCircleGear } from "react-icons/pi";
 import { IoLogoGithub } from "react-icons/io";
 import { FaInstagram ,FaFacebook  ,FaLinkedin  } from "react-icons/fa6";
 import { BsCalendarMonth } from "react-icons/bs";
 import Link from 'next/link';
-const page = () => {
+import CommentSection from '../../Components/Comments/Comments';
+interface Paramsin {
+  params: {
+      id : string
+  }
+}
+const page = ({params} : Paramsin) => {
+  const paramid = Number(params.id)
+    const filterd = databloglistindivi.find((item:any) => item.id === paramid )
   return (
     <div className=''>
         <header className="bg-black text-white">
         <div className="container mx-auto flex justify-between items-center py-4 px-6">
-          <h1 className="text-2xl font-bold text-white "><span className='text-primaryColor'>Food</span>Tuck</h1>
+          <h1 className="text-2xl font-bold text-yellow-500">FoodTuck</h1>
           <nav className="lg:block hidden">
             <ul className="flex space-x-6">
             <li><Link href="/">Home</Link></li>
@@ -64,26 +71,43 @@ const page = () => {
         <div className="text-center text-white">
           <h2 className="text-4xl font-bold">Blog List</h2>
           <p className="pt-2">
-            <Link href="/" className="text-yellow-400">Home</Link> › Blog
+            <Link href="/" className="text-yellow-400">Home</Link> › Blog Detail
           </p>
         </div>
       </section>
-
       <div className='lg:flex gap-4 px-6 lg:px-48 mt-[100px] mb-[100px] justify-between'>
       <div className='lg:w-[600px] '>
-        {datablog.map((blog)=>{
-            return(
-                <div key={blog.id} className='flex flex-col gap-4 justify-center mb-[50px]'>
-                   <Image src={blog.image} alt='blogs' width={400} height={400} className='lg:w-[600px] lg:h-[450px] w-[300px] h-[250px]'/>
+                <div className='flex flex-col gap-4 justify-center mb-[50px]'>
+                   <Image src={filterd?.image || "/fallback-image.jpg"} alt='blogs' width={400} height={400} className='lg:w-[600px] lg:h-[450px] w-[300px] h-[250px]'/>
                     <h1 className='flex gap-3 text-gray-600 '><BsCalendarMonth className='text-bordercoloryello text-2xl'/> Feb 14, 2022 /<GoCommentDiscussion className='text-bordercoloryello text-2xl'/>  3 / <PiUserCircleGear className='text-bordercoloryello text-2xl'/>Admin</h1>
-                    <h1 className='lg:text-[24px] text-[20px] font-bold font-helvetica text-blackkk'>{blog.title}</h1>
-                    <p className='lg:w-[550px] h-[170px] w-[300px] pt-[30px] font-medium text-[15px] text-blackkk]'>{blog.para}</p>
-                    <Link href={`/blog/${blog.id}`}><button className='border text-bordercoloryello lg:mt-0 mt-[30px] border-bordercoloryello w-[150px] h-[52px] p-3 rounded-[6px] flex gap-2 '><LuArrowUpFromLine className='text-xl text-bordercoloryello'/> Read more </button></Link>
-                </div>
-            )
-        })}
-      </div>
+                    <h1 className='lg:text-[24px] text-[20px] font-bold font-helvetica text-blackkk'>{filterd?.title}</h1>
+                    <p className='lg:w-[550px] h-[120px] w-[300px] pt-[30px] font-medium text-[15px] text-blackkk]'>{filterd?.para}</p>
+                    <p className='lg:w-[550px] h-[120px] w-[300px] pt-[30px] font-medium text-[15px] text-blackkk]'>{filterd?.para}</p>
+                    <p className='lg:w-[550px] h-[120px] w-[300px] pt-[30px] font-medium text-[15px] text-blackkk]'>{filterd?.para}</p>
 
+                    <div className='lg:flex  gap-7 mt-[20px] lg:w-[580px] w-[300px]'>
+                      <div>
+                      <Image src={filterd?.img2|| "/fallback-image.jpg"} alt='blogs' width={100} height={100} className='lg:w-[400px] mt-[20px] lg:h-[200px]  w-[300px] h-[250px]'/>
+                      </div>
+                      <div className=''>
+                      <p className='lg:w-[300px] h-[120px] w-[300px] pt-[30px] font-medium text-[14px] text-blackkk]'>{filterd?.para}</p>
+                      </div>
+                    </div>
+                    
+                    <p className='lg:w-[550px] h-[120px] w-[300px] pt-[30px] font-medium text-[15px] text-blackkk]'>{filterd?.para}</p>
+                    <p className='lg:w-[550px] h-[120px] w-[300px] pt-[30px] font-medium text-[15px] text-blackkk]'>{filterd?.para}</p>
+                    <div className='border-[1px] lg:h-[40px] h-[55px] lg:mt-0 mt-[40px] lg:flex justify-between p-2 text-[13px] '>
+                      <div className='flex gap-3'>
+                      <h1 className='font-bold'>Tags:</h1>
+                      <h1 className='text-gray-600'>Resturant, Dinner, Pizza, Yummy.</h1>
+                      </div>
+                      <h1 className='flex gap-3 text-gray-700'>Share: <a className="text-xl" href="https://pk.linkedin.com/in" > <FaLinkedin /></a>
+                                <a className="text-xl" href="https://github.com"><IoLogoGithub  /></a>
+                                <a className="text-xl" href="https://instagram.com">< FaInstagram/></a></h1>
+                    </div>
+                    <CommentSection/>
+                </div>
+      </div>
       <div className='w-[300px] h-fit '>
       <div className="flex items-center gap-[10px] w-full h-[40px] border text-blackkk border-gray-500">
             <input
@@ -125,10 +149,7 @@ const page = () => {
           </section>
 
         <div className="border-[1px] border-gray-400 mt-10 px-6 py-4 max-w-[400px] mx-auto">
-  {/* Heading */}
   <h1 className="text-lg font-bold py-4 border-b-[1px] border-gray-300">Recent Posts</h1>
-
-  {/* Post 1 */}
   <div className="flex gap-4 mt-6">
     <Image
       src="/Blog/burger.png"
@@ -144,8 +165,6 @@ const page = () => {
       </h2>
     </div>
   </div>
-
-  {/* Post 2 */}
   <div className="flex gap-4 mt-6">
     <Image
       src="/Blog/fries.png"
@@ -161,8 +180,6 @@ const page = () => {
       </h2>
     </div>
   </div>
-
-  {/* Post 3 */}
   <div className="flex gap-4 mt-6">
     <Image
       src="/Blog/fries.png"
@@ -178,8 +195,6 @@ const page = () => {
       </h2>
     </div>
   </div>
-
-  {/* Post 4 */}
   <div className="flex gap-4 mt-6">
     <Image
       src="/Blog/3picofcart.png"
@@ -196,8 +211,6 @@ const page = () => {
     </div>
   </div>
         </div>
-
-
         <div className="border-[1px] border-gray-400 mt-10 px-6 py-4 max-w-[400px] mx-auto">
   {/* Heading */}
   <h1 className="text-lg font-bold py-4 border-b-[1px] border-gray-300">Filter by menu</h1>
@@ -239,7 +252,7 @@ const page = () => {
   {/* Post 3 */}
   <div className="flex gap-4 mt-6">
     <Image
-      src="/Blog/burger.png"
+      src="/Blog/fries.png"
       alt="Fries"
       width={80}
       height={80}
@@ -270,7 +283,6 @@ const page = () => {
     </div>
   </div>
         </div>
-            
         <div className="border-[1px] border-gray-400 mt-10 px-6 py-4 max-w-[400px] mx-auto">
            <div className='flex flex-wrap gap-3'>
            <h1 className='border border-gray-400 py-2 px-[13px]'>Resturant</h1>
@@ -285,8 +297,7 @@ const page = () => {
             <h1 className='border border-gray-400 py-2 px-[13px]'>Burger</h1>
             <h1 className='border border-gray-400 py-2 px-[13px]'>Chicken</h1>
            </div>
-        </div>
-         
+        </div>     
         <div className="border-[1px] border-gray-400 mt-10 px-[22px] py-4 max-w-[400px] mx-auto">
         <div className='flex gap-1 flex-wrap'>
         <Image
@@ -297,14 +308,14 @@ const page = () => {
       className="cursor-pointer rounded-lg"
     />
     <Image
-      src="/Blog/burger.png"
+      src="/Blog/fries.png"
       alt="Burger"
       width={80}
       height={80}
       className="cursor-pointer rounded-lg"
     />
     <Image
-      src="/Blog/whyus2.png"
+      src="/Blog/3picofcart.png"
       alt="Burger"
       width={80}
       height={80}
@@ -325,7 +336,7 @@ const page = () => {
       className="cursor-pointer rounded-lg"
     />
     <Image
-      src="/Blog/burger.png"
+      src="/Blog/fries.png"
       alt="Burger"
       width={80}
       height={80}
@@ -333,7 +344,6 @@ const page = () => {
     />
         </div>
         </div>
-        
         <div className="border-[1px] border-gray-400 mt-10 px-[22px] py-4 max-w-[400px] mx-auto">
         <h1 className='text-2xl font-bold'>Follow us</h1>
         <div className='flex gap-4 justify-center text-xl text-blackkk mt-1'>
@@ -344,12 +354,9 @@ const page = () => {
         </div>
 
         </div>
-
-
      </div>
       </div>
     </div>
   )
 }
-
 export default page
